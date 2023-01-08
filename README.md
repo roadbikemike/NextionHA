@@ -32,7 +32,7 @@ Programming and designing the Nextion display is relatively straight forward if 
 
 I used [Paint.NET](https://www.getpaint.net/) for building the UI background, so the PDN file is included in the Nextion folder along with the other images required by the Nextion Editor.  Also, there is a lightbulb image which I used to indicate if our landscape lights were on.  You could obviously remove or replace with something else.
 
-Note:  The HMI file has two pages which I did not show.  The second page shows inside temperature data from my Nest.  I attempted to implement a waveform to show historical outside temperature data but later removed.  Updating a waveform object from another page and keeping its state seems very challenging.  The second page could easily be removed using the Nextion Editor.
+Note:  The HMI file has two pages which I did not show.  The second page shows inside temperature data from my Nest.  I attempted to implement a waveform to show historical outside temperature data but later removed.  Updating a waveform object from another page and keeping its state seems very challenging.  The second page could easily be removed using the Nextion Editor.  Historical graphs for temperature, humidity and pressure can be found in HA, so having them in the display would likely not be looked at anyhow.
 
 # Outside Sensor
 
