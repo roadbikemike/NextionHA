@@ -1,0 +1,160 @@
+esphome:
+  name: nextion
+
+esp8266:
+  board: d1_mini
+
+# To enable tft download
+http_request:
+
+# Enable logging
+logger:
+  baud_rate: 0
+  level: DEBUG
+  #logs: 
+  #     api: WARN
+  #     homeassistant: WARN
+  #     nextion: VERBOSE
+  #     api.service: WARN
+  #     sensor: WARN
+  #     scheduler: WARN
+  #     resistance: WARN
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "BrMZ7rkWs7BUOq7L1nJQvt6+PamQECFZ7JOKoAVvmgc="
+  services:
+    - service: update_nextion
+      then:
+        - lambda: 'id(weatherNextion)->upload_tft();'
+
+ota:
+  password: "362d390eccac7e249d0338c725df6c9a"
+
+wifi:
+  domain: .localdomain
+  fast_connect: true
+  networks:
+  - ssid: !secret wifi_ssid
+    password: !secret wifi_password
+    hidden: true
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Nextion Fallback Hotspot"
+    password: "Yu0BoiYeKRx9"
+
+captive_portal:
+
+uart:
+  id: uart_1
+  rx_pin: RX
+  tx_pin: TX
+  baud_rate: 115200
+
+sun: 
+  latitude: !secret latitude
+  longitude: !secret longitude
+
+time:
+  - platform: homeassistant
+    id: ha_time
+
+globals:
+  - id: api_connected
+    type: bool
+    restore_value: no
+    initial_value: "false"
+
+text_sensor:
+  - platform: sun
+    name: Next Sunrise
+    type: sunrise
+    id: sunrise
+    format: "%I:%M %p"
+    
+  - platform: sun
+    name: Next Sunset
+    type: sunset
+    id: sunset
+    format: "%I:%M %p"
+
+sensor:
+  - platform: homeassistant
+    id: out_temp
+    entity_id: sensor.temperature
+
+  - platform: homeassistant
+    id: out_humidity
+    entity_id: sensor.humidity
+
+  - platform: homeassistant
+    id: out_pressure
+    entity_id: sensor.pressure
+
+  - platform: homeassistant
+    id: inside_temp
+    entity_id: sensor.hallway_thermostat_temperature
+
+  - platform: homeassistant
+    id: inside_humidity
+    entity_id: sensor.hallway_thermostat_humidity
+
+  - platform: homeassistant
+    id: inside_target
+    entity_id: sensor.hallway_thermostat_target
+
+binary_sensor:
+  - platform: homeassistant
+    id: landscape_lights
+    entity_id: switch.sonoff_s31_relay
+
+interval:
+  - interval: 10s
+    then:
+      - if:
+          condition:
+            api.connected:
+          then:
+            - lambda: |-
+                id(api_connected) = true;
+          else:
+            - lambda: |-
+                id(api_connected) = false;
+
+display:
+  - platform: nextion
+    id: weatherNextion
+    uart_id: uart_1
+    update_interval: 60s
+    brightness: 65%
+    tft_url: 'http://hassio.localdomain:8123/local/tft/Weather3.tft'
+    lambda: |-
+      if(api_connected){  
+
+        auto time_text = id(ha_time).now().strftime("%A %B %d %Y");
+        auto sunrise_text = id(sunrise).state;
+        auto sunset_text = id(sunset).state;
+        
+        it.set_component_pic("page0.wifistatus",3);
+        
+        it.set_component_value("page0.temp", id(out_temp).state);
+        it.set_component_value("page0.humidity", id(out_humidity).state);
+        it.set_component_value("page0.pressure", id(out_pressure).state);
+        it.set_component_value("page1.temptarget", id(inside_target).state);
+        it.set_component_value("page1.temphouse", id(inside_temp).state);
+        it.set_component_value("page1.humidhouse", id(inside_humidity).state);
+
+        it.set_component_text("page0.daydate", time_text.c_str());
+        it.set_component_text("page0.sunrise", sunrise_text.c_str());
+        it.set_component_text("page0.sunset", sunset_text.c_str());
+
+        if (id(landscape_lights).state) {
+          it.show_component("extlights");
+        } else {
+          it.hide_component("extlights");
+        }          
+      } else {
+        it.set_component_pic("page0.wifistatus",4);
+      }  

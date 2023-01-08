@@ -1,0 +1,52 @@
+esphome:
+  name: outside-temp
+  comment: Outside weather metrics
+
+esp8266:
+  board: d1_mini
+
+# Enable logging
+logger:
+  logs:
+    sensor: WARN
+    resistance: WARN
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "3hYyMdG4iB6wO6GaxrJ7YPkh1hXu3pRoaQnJAOwC7wI="
+
+ota:
+  password: "2f4c03704701380e00a33de665f371d4"
+
+wifi:
+  domain: .localdomain
+  fast_connect: true
+  networks:
+  - ssid: !secret wifi_ssid
+    password: !secret wifi_password
+    hidden: true
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Outside-Temp_AP"
+    password: "C5aZcN6BuVTX"
+
+captive_portal:
+    
+i2c:
+  sda: D2
+  scl: D1
+  scan: false  # Removing the scan feature.
+
+sensor:
+  - platform: bme280
+    temperature:
+      name: "Temperature"
+      oversampling: 16x
+    pressure:
+      name: "Pressure"
+    humidity:
+      name: "Humidity"
+    address: 0x76
+    update_interval: 60s
