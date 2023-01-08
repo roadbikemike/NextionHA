@@ -47,6 +47,14 @@ In regards to connecting the the BME280 outside sensor and Wemos, I went with wi
 
 The inside unit also uses a Wemos to drive the Nextion display and communicate with HA over Wifi.  Updates to the display are brokered through [ESPHome Nextion display platform](https://esphome.io/components/display/nextion.html).  The source of the display data comes from HA and feeds from the outdoor sensor.
 
+Updating the Nextion display can be done over the air as well when integrated with HA. This is much easier than pulling everything apart and attaching the Nextion display to the USB programmer.
+
+1. From the Nextion Editor, select File, then "TFT file output".  Select a path and save the file.
+2. Save this file in Home Assistant to path /config/www/tft.
+3. Add a `tft_url` parameter to `display` in the Nextion ESPHome YAML file.  Also add a `service` to the `api` section.  Take a look at my YAML file for an example.
+4. When your ready to update the display, go into HA Developer Tools.  Select SERVICES and search for ESPHome.  You should see something like `ESPHome: nextion_update_nextion`.  Click CALL SERVICE to initiate the update.
+
+
 # 3D Printed Cases
 
 All components are housed in custom 3D printed cases.  Well, I should clarify that.  The base designs came from [Thingiverse](https://www.thingiverse.com/), then modified using [Tinkercad](https://www.tinkercad.com/).  The clone Wemos were slightly larger than the case I pulled from Thingiverse so they had to be expanded.  Also the housing for the exterior sensor did not have covers over the openings to prevent element intrusion.  So, I added those along with a few minor tweaks.  
