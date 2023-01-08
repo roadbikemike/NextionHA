@@ -59,9 +59,9 @@ Need to thank my kids as well for the Christmas present 3D printer!
 
 I should give credit to those that provided the original designs:
 
-* [BME280 Case]("https://www.thingiverse.com/thing:3809818")
-* [Wemos D1 Case]("https://www.thingiverse.com/thing:1768820")
-* [Nextion Case]("https://www.thingiverse.com/thing:1497062")
+* [BME280 Case](https://www.thingiverse.com/thing:3809818)
+* [Wemos D1 Case](https://www.thingiverse.com/thing:1768820)
+* [Nextion Case](https://www.thingiverse.com/thing:1497062)
 
 ![Outside Case](/images/case_outside.jpg "Outside Case")
 ![BME280 Wemos Case](/images/case_wemos.jpg "BME280 Wemos Case")
