@@ -3,7 +3,7 @@
 
 The intention of this project was to replace a basic home weather station which recently failed.  My wife wanted to replace the station with another cheap unit from Amazon.  Instead, I took this as an opportunity to build my own.  I think she had some doubts with my intent and perhaps I did as well, but lets dive in.  In all actuality, the project turned out much better than anticipated so its worth sharing.
 
-![Weather Project](/NextionHA/images/project.jpg "Weather Project Photo")
+![Weather Project](/images/project.jpg "Weather Project Photo")
 
 # Required Components
 
@@ -28,7 +28,7 @@ The backbone of the entire project is [Home Assistant](https://www.home-assistan
 
 Programming and designing the Nextion display is relatively straight forward if you have experience with other programming IDE's.  If not, it may take longer to grasp some of the concepts.  Regardless, if you load my HMI file into the [Nextion Editor](https://nextion.tech/nextion-editor/), this will show you how the UI was built, etc.
 
-![IDE](/NextionHA/images/nextion_ide.png "IDE")
+![IDE](/images/nextion_ide.png "IDE")
 
 I used [Paint.NET](https://www.getpaint.net/) for the building UI background, so the PDN file is included in the Nextion folder along with the other images required by the Nextion Editor.  Also, there is a lightbulb image which I used to indicate if our landscape lights were on.  You could obviously remove or replace with something else.
 
@@ -41,7 +41,7 @@ The outside sensor uses two components.  The BME280 (Temperature, Humidity and P
 In regards to connecting the the BME280 outside sensor and Wemos, I went with wires from the inside of a CAT-5 cable.  This is not ideal and something I plan to replace in the near future.  I also did some unnecessary soldering as well.  Jumper wires should probably be used here.  The CAT-5 wires were attractive because they are small in diameter and fit through the seals on our windows and I had them on hand.
 
 
-![BME280](/NextionHA/images/outside_sensor.jpg "BME280 and Case")
+![BME280](/images/outside_sensor.jpg "BME280 and Case")
 
 # Inside Display
 
@@ -63,10 +63,10 @@ I should give credit to those that provided the original designs:
 * [Wemos D1 Case]("https://www.thingiverse.com/thing:1768820")
 * [Nextion Case]("https://www.thingiverse.com/thing:1497062")
 
-![Outside Case](/NextionHA/images/case_outside.jpg "Outside Case")
-![BME280 Wemos Case](/NextionHA/images/case_wemos.jpg "BME280 Wemos Case")
-![Nextion Case](/NextionHA/images/case_inside.jpg "Nextion Case")
-![Nextion Case Back](/NextionHA/images/case_back.jpg "Nextion Case Back")
+![Outside Case](/images/case_outside.jpg "Outside Case")
+![BME280 Wemos Case](/images/case_wemos.jpg "BME280 Wemos Case")
+![Nextion Case](/images/case_inside.jpg "Nextion Case")
+![Nextion Case Back](/images/case_back.jpg "Nextion Case Back")
 
 # Challenges
 
