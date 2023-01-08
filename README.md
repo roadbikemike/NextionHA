@@ -50,7 +50,7 @@ The inside unit also uses a Wemos to drive the Nextion display and communicate w
 Updating the Nextion display can be done over the air as well when integrated with HA. This is much easier than pulling everything apart and attaching the Nextion display to the USB programmer.
 
 1. From the Nextion Editor, select File, then "TFT file output".  Select a path and save the file.
-2. Save this file in Home Assistant to path /config/www/tft.
+2. Move this file to Home Assistant in the path /config/www/tft.
 3. Add a `tft_url` parameter to `display` in the Nextion ESPHome YAML file.  Also add a `service` to the `api` section.  Take a look at my YAML file for an example.
 4. When your ready to update the display, go into HA Developer Tools.  Select SERVICES and search for ESPHome.  You should see something like `ESPHome: nextion_update_nextion`.  Click CALL SERVICE to initiate the update.
 
