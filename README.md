@@ -1,5 +1,9 @@
 # Weather Station using Home Assistant (HA), Nextion, ESPHome and Wemos D1 Mini
-(_Version 0.1_) 
+(_Version 0.2_) 
+
+Updates:
+0.1: Initial release
+0.2: Minor update to pressure.  If pressure exceeded three digits, the display was truncating.
 
 The intention of this project was to replace a basic home weather station which recently failed.  My wife wanted to replace the station with another [cheap unit from Amazon](https://www.amazon.com/AcuRite-00424CA-Digital-Thermometer-Temperature/dp/B00WXIR94M/ref=sr_1_33?crid=2560J0F63KQT8&keywords=acurite+weather+station&qid=1673193466&sprefix=accurite+weather+station%2Caps%2C115&sr=8-33).  Instead, I took this as an opportunity to build my own.  I think she had some doubts with my intent and perhaps I did as well, but lets dive in.  In all actuality, the project turned out much better than anticipated so its worth sharing.
 
